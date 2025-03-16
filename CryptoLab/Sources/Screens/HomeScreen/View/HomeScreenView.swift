@@ -16,7 +16,7 @@ final class HomeScreenView: UIViewController {
         let label = UILabel()
         label.text = "Home"
         label.textColor = .white
-        label.font = .systemFont(ofSize: 32, weight: .bold)
+        label.font = .poppinsSemiBold(size: 32)
         return label
     }()
     
@@ -49,7 +49,7 @@ final class HomeScreenView: UIViewController {
     private lazy var affilateLabel: UILabel = {
         let label = UILabel()
         label.text = "Affilate program"
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .poppinsMedium(size: 20)
         label.textColor = .white
         return label
     }()
@@ -65,7 +65,7 @@ final class HomeScreenView: UIViewController {
         let label = UILabel()
         label.text = "Trending"
         label.textColor = .customBlack
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .poppinsMedium(size: 20)
         return label
     }()
     
@@ -95,7 +95,7 @@ final class HomeScreenView: UIViewController {
     private lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.text = "Learn more"
-        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.font = .poppinsSemiBold(size: 14)
         label.textColor = .customDarkText
         return label
     }()

@@ -11,7 +11,7 @@ final class TokenTableViewCell: UITableViewCell {
     
     lazy private var tokenLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = .poppinsMedium(size: 18)
         label.text = "Bitcoin"
         label.textColor = .customDarkText
         return label
@@ -19,7 +19,7 @@ final class TokenTableViewCell: UITableViewCell {
     
     lazy private var tickerLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .poppinsMedium(size: 14)
         label.text = "BTC"
         label.textColor = .customGrayText
         return label
@@ -27,7 +27,7 @@ final class TokenTableViewCell: UITableViewCell {
     
     lazy private var tokenPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = .poppinsMedium(size: 18)
         label.textColor = .customDarkText
         label.text = "$32,128.80"
         return label
@@ -41,7 +41,7 @@ final class TokenTableViewCell: UITableViewCell {
     
     lazy private var priceChangePercentLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .poppinsMedium(size: 14)
         label.text = "2.5%"
         label.textColor = .customGrayText
         return label

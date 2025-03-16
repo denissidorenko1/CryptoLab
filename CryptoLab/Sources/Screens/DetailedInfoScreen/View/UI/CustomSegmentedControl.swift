@@ -63,7 +63,7 @@ final class CustomSegmentedControl: UIView {
         for (index, title) in segments.enumerated() {
             let button = UIButton(type: .system)
             button.setTitle(title, for: .normal)
-            button.titleLabel?.font = .systemFont(ofSize: 16, weight: .medium)
+            button.titleLabel?.font = .poppinsMedium(size: 14)
             button.setTitleColor(.customGrayText, for: .normal)
             button.addTarget(self, action: #selector(segmentTapped(_:)), for: .touchUpInside)
             button.tag = index

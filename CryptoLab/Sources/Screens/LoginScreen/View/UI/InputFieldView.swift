@@ -1,5 +1,6 @@
 import UIKit
 
+// MARK: - InputFieldView
 final class InputFieldView: UIView {
     // MARK: - UI Components
     private let iconImageView: UIImageView = {
@@ -13,14 +14,14 @@ final class InputFieldView: UIView {
     let textField: UITextField = {
         let textField = UITextField()
         textField.borderStyle = .none
-        textField.font = UIFont.systemFont(ofSize: 16)
+        textField.font = UIFont.poppinsRegular(size: 16)
         textField.textColor = .black
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         return textField
     }()
     
-    // MARK: - Initialization
+    // MARK: - Initializers
     init(icon: UIImage, placeholder: String, isSecure: Bool = false) {
         super.init(frame: .zero)
         setupView()
@@ -31,7 +32,7 @@ final class InputFieldView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setup Methods
+    // MARK: - Private Methods
     private func setupView() {
         backgroundColor = .white
         layer.cornerRadius = 25
@@ -54,16 +55,16 @@ final class InputFieldView: UIView {
         ])
     }
     
-    // MARK: - Configuration Method
     private func configure(icon: UIImage, placeholder: String, isSecure: Bool) {
         iconImageView.image = icon
-        textField.placeholder = placeholder
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.customGrayText])
         textField.isSecureTextEntry = isSecure
         textField.delegate = self
         textField.keyboardAppearance = .default
     }
 }
 
+// MARK: - UITextFieldDelegate
 extension InputFieldView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

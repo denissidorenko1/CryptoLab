@@ -18,14 +18,14 @@ final class DetailedInfoScreenView: UIViewController {
     
     private lazy var tokenLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .poppinsMedium(size: 14)
         label.textColor = .customDarkText
         return label
     }()
     
     private lazy var tokenPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 28, weight: .semibold)
+        label.font = .poppinsMedium(size: 28)
         label.textColor = .customDarkText
         return label
     }()
@@ -38,7 +38,7 @@ final class DetailedInfoScreenView: UIViewController {
     
     private lazy var priceChangeLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .poppinsMedium(size: 14)
         label.textColor = .customGrayText
         return label
     }()
@@ -60,7 +60,7 @@ final class DetailedInfoScreenView: UIViewController {
     private lazy var marketStatisticLabel: UILabel = {
         let label = UILabel()
         label.text = "Market Statistic"
-        label.font = .systemFont(ofSize: 20, weight: .bold)
+        label.font = .poppinsMedium(size: 20)
         label.textColor = .customDarkText
         return label
     }()
@@ -68,7 +68,7 @@ final class DetailedInfoScreenView: UIViewController {
     private lazy var marketCapitalizationLabel: UILabel = {
         let label = UILabel()
         label.text = "Market capitalization"
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .poppinsMedium(size: 14)
         label.textColor = .customGrayText
         return label
     }()
@@ -76,21 +76,21 @@ final class DetailedInfoScreenView: UIViewController {
     private lazy var circulatingSupplyLabel: UILabel = {
         let label = UILabel()
         label.text = "Circulating supply"
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .poppinsMedium(size: 14)
         label.textColor = .customGrayText
         return label
     }()
     
     private lazy var marketCapitalizationValueLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .poppinsSemiBold(size: 14)
         label.textColor = .customDarkText
         return label
     }()
     
     private lazy var circulatingSupplyValueLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .poppinsSemiBold(size: 14)
         label.textColor = .customDarkText
         return label
     }()

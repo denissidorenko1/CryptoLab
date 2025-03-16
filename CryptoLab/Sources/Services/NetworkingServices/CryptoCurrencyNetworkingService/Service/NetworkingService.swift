@@ -2,11 +2,6 @@ import Foundation
 
 // MARK: - ToDoNetworkingService
 final class NetworkingService {
-
-    // FIXME: - избавиться от синглтона!
-    // MARK: - Dependencies
-//    static let shared = NetworkingService()
-
     // MARK: - Private properties
     private let networkingService: NetworkingServiceProtocol
 
@@ -37,18 +32,5 @@ final class NetworkingService {
             return tokens
         }
     }
-}
-
-// FIXME: - переместить в нормальное место
-struct Token {
-    let id: String
-    let name: String
-    let symbol: String
-    let usdPrice: Double
-    let marketVolume: Double
-    let supply: Double?
-    let dayChangePercent: Double
-    let weekChangePercent: Double?
-    let yearChangePercent: Double?
 }
 

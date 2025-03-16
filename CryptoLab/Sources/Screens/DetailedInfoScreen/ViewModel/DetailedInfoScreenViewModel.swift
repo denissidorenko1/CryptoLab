@@ -1,6 +1,6 @@
 import Foundation
 
-// FIXME: - протокол!
+// FIXME: - протокол! Перенести токен из неизвестного места в модель этого экрана!ч
 final class DetailedInfoScreenViewModel {
     var model: Token
     

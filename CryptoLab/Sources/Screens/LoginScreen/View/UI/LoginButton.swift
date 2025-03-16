@@ -5,7 +5,7 @@ final class LoginButton: UIView {
     // MARK: - UI Elements
     let label: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = .poppinsSemiBold(size: 15)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
