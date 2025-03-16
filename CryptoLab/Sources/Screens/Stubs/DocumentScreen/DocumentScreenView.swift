@@ -1,8 +1,11 @@
 import UIKit
 
+// MARK: - DocumentScreenView
 final class DocumentScreenView: UIViewController {
+    // MARK: - Private Properties
     private let coordinator: Coordinator
     
+    // MARK: - Initializers
     init(coordinator: Coordinator) {
         self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
@@ -14,6 +17,7 @@ final class DocumentScreenView: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue

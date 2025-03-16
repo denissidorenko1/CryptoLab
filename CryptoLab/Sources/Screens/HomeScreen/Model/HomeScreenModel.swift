@@ -10,8 +10,16 @@ enum SortingOrder {
     }
 }
 
+// MARK: - HomeScreenModelProtocol
+protocol HomeScreenModelProtocol {
+    var tokens: [Token] { get set }
+    var sortOrder: SortingOrder { get set }
+    
+    mutating func toggleSorting()
+}
+
 // MARK: - HomeScreenModel
-struct HomeScreenModel {
+struct HomeScreenModel: HomeScreenModelProtocol {
     var tokens: [Token]
     var sortOrder: SortingOrder
     

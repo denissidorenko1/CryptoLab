@@ -28,7 +28,7 @@ final class HomeTabCoordinator: NavigationCoordinator {
     
     func popTabBar() {
         guard let tabBarCoordinator = parentCoordinator as? TabBarCoordinator else { return }
-        tabBarCoordinator.popBack()
+        tabBarCoordinator.pushLoginScreen()
     }
 }
 

@@ -59,8 +59,7 @@ final class TabBarCoordinator: Coordinator {
         tabBarController.selectedIndex = index
     }
     
-    // FIXME: нейминг
-    func popBack() {
+    func pushLoginScreen() {
         guard let appCoordinator = parentCoordinator as? AppCoordinator else { return }
         appCoordinator.pushLoginScreen()
     }
@@ -70,15 +69,6 @@ final class DefaultNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationBar.isHidden = true
-//        interactivePopGestureRecognizer?.delegate = self
     }
 }
-
-//extension DefaultNavigationController: UIGestureRecognizerDelegate {
-//
-//    public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-//        return viewControllers.count > 1
-//    }
-//
-//}
 

@@ -1,5 +1,6 @@
 import Foundation
 
+// MARK: - Token
 struct Token {
     let id: String
     let name: String

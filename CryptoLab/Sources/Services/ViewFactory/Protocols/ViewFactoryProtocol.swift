@@ -1,5 +1,6 @@
 import Foundation
 
+// MARK: - ViewFactoryProtocol
 protocol ViewFactoryProtocol {
     func makeLoginScreenView(with coordinator: Coordinator) -> LoginScreenView
     func makeDetailedScreenView(with coordinator: Coordinator, with model: Token) -> DetailedInfoScreenView

@@ -1,17 +1,23 @@
 import UIKit
 
+// MARK: - AppCoordinator
 final class AppCoordinator: Coordinator {
+    // MARK: - Public Properties
     weak var parentCoordinator: Coordinator?
     var childCoordinators: [Coordinator] = []
     
+    // MARK: Private Properties
     private let window: UIWindow
     private let viewFactory: ViewFactory
     
+    
+    // MARK: Initializers
     init(window: UIWindow, viewFactory: ViewFactory = ViewFactory()) {
         self.window = window
         self.viewFactory = viewFactory
     }
     
+    // MARK: - Public methods
     func start() {
         let authRepository = UserDefaultsAuthRepository()
         let authService = DefaultAuthService(authRepository: authRepository)
@@ -45,19 +51,3 @@ final class AppCoordinator: Coordinator {
         window.makeKeyAndVisible()
     }
 }
-
-final class DefaultTabBarController: UITabBarController {
-
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
-    }
-    
-    private func setupUI() {
-        tabBar.backgroundColor = .white
-        tabBar.tintColor = .customBlack
-        tabBar.unselectedItemTintColor = .customDeselectedIcon
-    }
-}
-

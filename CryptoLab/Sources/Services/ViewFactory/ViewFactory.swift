@@ -1,9 +1,12 @@
 import Foundation
+
+// MARK: - ViewFactory
 final class ViewFactory: ViewFactoryProtocol {
     func makeLoginScreenView(with coordinator: Coordinator) -> LoginScreenView {
         let authRepository = UserDefaultsAuthRepository()
         let authService = DefaultAuthService(authRepository: authRepository)
-        let viewModel = LoginScreenViewModel(authService: authService)
+        let model = LoginScreenModel()
+        let viewModel = LoginScreenViewModel(authService: authService, model: model)
         return LoginScreenView(viewModel: viewModel, coordinator: coordinator)
     }
     
@@ -13,7 +16,8 @@ final class ViewFactory: ViewFactoryProtocol {
     }
     
     func makeHomeScreenView(with coordinator: Coordinator) -> HomeScreenView {
-        HomeScreenView(viewModel: HomeScreenViewModel(), coordinator: coordinator)
+        let viewModel = HomeScreenViewModel()
+        return HomeScreenView(viewModel: viewModel, coordinator: coordinator)
     }
     
     func makeGraphScreenView(with coordinator: Coordinator) -> GraphScreenView {

@@ -1,7 +1,17 @@
 import Foundation
 
+// MARK: - HomeScreenViewModelProtocol
+protocol HomeScreenViewModelProtocol {
+    var tokens: [Token] { get }
+    var delegate: HomeScreenViewModelDelegate? { get set }
+    
+    func fetchTokens()
+    func logout()
+    func toggleSorting()
+}
+
 // MARK: - HomeScreenViewModel
-final class HomeScreenViewModel {
+final class HomeScreenViewModel: HomeScreenViewModelProtocol {
     // MARK: - Dependencies
     private let networkingService: NetworkingService
     
@@ -13,7 +23,7 @@ final class HomeScreenViewModel {
     }
     
     // MARK: - Private Properties
-    private(set) var model: HomeScreenModel
+    private(set) var model: HomeScreenModelProtocol
     
     // MARK: - Static Properties
     static let tokenNames: [String] = ["btc", "eth", "tron", "luna", "polkadot", "dogecoin", "tether", "stellar", "cardano", "xrp"]

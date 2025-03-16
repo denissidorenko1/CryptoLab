@@ -19,7 +19,6 @@ final class HomeScreenView: UIViewController {
         static let menuWidth: CGFloat = 157
         static let menuDiagonalOffset: CGFloat = 8
         static let affilateLabelTopOffset: CGFloat = 45
-        
     }
     
     // MARK: UI Components
@@ -128,7 +127,7 @@ final class HomeScreenView: UIViewController {
     }()
     
     // MARK: - Properties
-    private var viewModel: HomeScreenViewModel
+    private var viewModel: HomeScreenViewModelProtocol
     private var coordinator: Coordinator
     
     // MARK: - Initializers
