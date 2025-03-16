@@ -123,6 +123,7 @@ final class HomeScreenView: UIViewController {
     private lazy var activityIndicator: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)
         spinner.hidesWhenStopped = true
+        spinner.color = .customBlack
         return spinner
     }()
     
