@@ -68,7 +68,6 @@ struct DefaultNetworkingService: NetworkingServiceProtocol {
             let parsedData = try decoder.decode(T.self, from: data)
             return parsedData
         } catch {
-            print(error)
             throw NetworkingServiceError.parsingError
         }
     }

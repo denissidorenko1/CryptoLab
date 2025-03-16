@@ -5,7 +5,7 @@ final class NetworkingService {
 
     // FIXME: - избавиться от синглтона!
     // MARK: - Dependencies
-    static let shared = NetworkingService()
+//    static let shared = NetworkingService()
 
     // MARK: - Private properties
     private let networkingService: NetworkingServiceProtocol
