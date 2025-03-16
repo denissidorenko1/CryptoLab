@@ -7,6 +7,19 @@ protocol CustomSegmentedControlDelegate: AnyObject {
 
 // MARK: - CustomSegmentedControl
 final class CustomSegmentedControl: UIView {
+    // MARK: - UILocalConstants
+    private enum UILocalConstants {
+        static let backgroundCornerRadius: CGFloat = 30
+        static let segmentCornerRadius: CGFloat = 25
+        static let damping: CGFloat = 0.7
+        static let springVelocity: CGFloat = 0.7
+        static let indicatorHorizontalOffset: CGFloat = 4
+        static let indicatorVerticallOffset: CGFloat = 4
+        static let indicatorShadowOpacity: Float = 0.1
+        static let indicatorShadowRadius: CGFloat = 4
+        static let indicatorShadowOffset: CGSize = CGSize(width: 0, height: 4)
+    }
+    
     // MARK: - Properties
     private let segments: [String]
     private var buttons: [UIButton] = []
@@ -35,16 +48,17 @@ final class CustomSegmentedControl: UIView {
     // MARK: - Private Methods
     private func setupUI() {
         backgroundColor = .customDarkBackground
-        layer.cornerRadius = 30
+        layer.cornerRadius = UILocalConstants.backgroundCornerRadius
         clipsToBounds = true
         
         selectionIndicator.backgroundColor = .customBrightBackground
-        selectionIndicator.layer.cornerRadius = 25
-        
         selectionIndicator.layer.shadowColor = UIColor.customBlack.cgColor
-        selectionIndicator.layer.shadowOpacity = 0.1
-        selectionIndicator.layer.shadowOffset = CGSize(width: 0, height: 4)
-        selectionIndicator.layer.shadowRadius = 4
+        
+        selectionIndicator.layer.cornerRadius = UILocalConstants.segmentCornerRadius
+        selectionIndicator.layer.shadowOpacity = UILocalConstants.indicatorShadowOpacity
+        selectionIndicator.layer.shadowOffset = UILocalConstants.indicatorShadowOffset
+        selectionIndicator.layer.shadowRadius = UILocalConstants.indicatorShadowRadius
+        
         addSubview(selectionIndicator)
         
         let stackView = UIStackView()
@@ -82,12 +96,18 @@ final class CustomSegmentedControl: UIView {
         let buttonFrame = selectedButton.frame
         selectedButton.setTitleColor(.customDarkText, for: .normal)
         
-        UIView.animate(withDuration: animated ? 0.3 : 0, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.7, options: .curveEaseOut) {
+        UIView.animate(
+            withDuration: UIGlobalConstants.animationDuration,
+            delay: 0,
+            usingSpringWithDamping: UILocalConstants.damping,
+            initialSpringVelocity: UILocalConstants.springVelocity,
+            options: .curveEaseOut
+        ) {
             self.selectionIndicator.frame = CGRect(
-                x: buttonFrame.origin.x + 4,
-                y: buttonFrame.origin.y + 4,
-                width: buttonFrame.width - 8,
-                height: buttonFrame.height - 8
+                x: buttonFrame.origin.x + UILocalConstants.indicatorHorizontalOffset,
+                y: buttonFrame.origin.y + UILocalConstants.indicatorVerticallOffset,
+                width: buttonFrame.width - UILocalConstants.indicatorHorizontalOffset*2,
+                height: buttonFrame.height - UILocalConstants.indicatorVerticallOffset*2
             )
         }
     }

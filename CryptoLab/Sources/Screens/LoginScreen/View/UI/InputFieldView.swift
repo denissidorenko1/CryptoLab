@@ -2,6 +2,14 @@ import UIKit
 
 // MARK: - InputFieldView
 final class InputFieldView: UIView {
+    private enum UILocalConstants {
+        static let cornerRadius: CGFloat = 25
+        static let imageSize: CGFloat = 32
+        static let horizontalInset: CGFloat = 12
+        static let elementHeight: CGFloat = 55
+        static let elementSpacing: CGFloat = 10
+    }
+    
     // MARK: - UI Components
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -35,7 +43,7 @@ final class InputFieldView: UIView {
     // MARK: - Private Methods
     private func setupView() {
         backgroundColor = .white
-        layer.cornerRadius = 25
+        layer.cornerRadius = UILocalConstants.cornerRadius
         translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(iconImageView)
@@ -43,15 +51,15 @@ final class InputFieldView: UIView {
         
 
         NSLayoutConstraint.activate([
-            iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            iconImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UILocalConstants.horizontalInset),
             iconImageView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            iconImageView.widthAnchor.constraint(equalToConstant: 32),
-            iconImageView.heightAnchor.constraint(equalToConstant: 32),
+            iconImageView.widthAnchor.constraint(equalToConstant: UILocalConstants.imageSize),
+            iconImageView.heightAnchor.constraint(equalToConstant: UILocalConstants.imageSize),
             
-            textField.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 10),
-            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            textField.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: UILocalConstants.elementSpacing),
+            textField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UILocalConstants.horizontalInset),
             textField.centerYAnchor.constraint(equalTo: centerYAnchor),
-            textField.heightAnchor.constraint(equalToConstant: 55)
+            textField.heightAnchor.constraint(equalToConstant: UILocalConstants.elementHeight)
         ])
     }
     

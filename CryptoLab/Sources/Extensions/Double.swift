@@ -6,6 +6,7 @@ extension Double {
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 2
         formatter.maximumFractionDigits = 2
+        formatter.decimalSeparator = "."
         return "$"+(formatter.string(from: NSNumber(value: self)) ?? "0.00")
     }
     

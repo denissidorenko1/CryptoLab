@@ -2,13 +2,33 @@ import UIKit
 
 // MARK: - HomeScreenView
 final class HomeScreenView: UIViewController {
+    // MARK: - UILocalConstants
+    private enum UILocalConstants {
+        static let towerShadowRadius: CGFloat = 95
+        static let towerShadowOpacity: Float = 0.75
+        static let learnButtonRadius: CGFloat = 18
+        static let learnButtonHeight: CGFloat = 35
+        static let learnButtonWidth: CGFloat = 127
+        static let learnButtonTopOffset: CGFloat = 12
+        static let menuIconSize: CGFloat = 48
+        static let horizontalInset: CGFloat = 25
+        static let verticalInset: CGFloat = 25
+        static let sheetTopOffset: CGFloat = 258
+        static let towerImageTopOffset: CGFloat = 101
+        static let menuHeight: CGFloat = 102
+        static let menuWidth: CGFloat = 157
+        static let menuDiagonalOffset: CGFloat = 8
+        static let affilateLabelTopOffset: CGFloat = 45
+        
+    }
+    
     // MARK: UI Components
     private lazy var towerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .tower
-        imageView.layer.shadowRadius = 95
+        imageView.layer.shadowRadius = UILocalConstants.towerShadowRadius
         imageView.layer.shadowColor = UIColor.black.cgColor
-        imageView.layer.shadowOpacity = 0.75
+        imageView.layer.shadowOpacity = UILocalConstants.towerShadowOpacity
         return imageView
     }()
     
@@ -57,7 +77,7 @@ final class HomeScreenView: UIViewController {
     private lazy var sheetView: UIView = {
         let view = UIView()
         view.backgroundColor = .customBackground
-        view.layer.cornerRadius = 40
+        view.layer.cornerRadius = UIGlobalConstants.sheetCornerRadius
         return view
     }()
     
@@ -85,10 +105,10 @@ final class HomeScreenView: UIViewController {
         return imageView
     }()
     
-    private lazy var infoView: UIView = {
+    private lazy var learnButton: UIView = {
         let view = UIView()
         view.backgroundColor = .customBackground
-        view.layer.cornerRadius = 35/2
+        view.layer.cornerRadius = UILocalConstants.learnButtonRadius
         return view
     }()
     
@@ -122,7 +142,7 @@ final class HomeScreenView: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Lifecycle methods
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -133,10 +153,15 @@ final class HomeScreenView: UIViewController {
         viewModel.fetchTokens()
     }
     
-    // MARK: UI methods
+    // MARK: Private Methods
     private func setupTabBarItem() {
         tabBarItem = UITabBarItem(title: nil, image: .homeTabBarIcon, tag: 0)
-        tabBarItem.imageInsets = UIEdgeInsets(top: 15, left: 0, bottom: -15, right: 0)
+        tabBarItem.imageInsets = UIEdgeInsets(
+            top: UIGlobalConstants.tabBarVerticalInset,
+            left: 0,
+            bottom: -UIGlobalConstants.tabBarVerticalInset,
+            right: 0
+        )
     }
     
     private func setupTableView() {
@@ -156,7 +181,7 @@ final class HomeScreenView: UIViewController {
         view.addSubview(menuIcon)
         view.addSubview(menu)
         view.addSubview(affilateLabel)
-        view.addSubview(infoView)
+        view.addSubview(learnButton)
         view.addSubview(infoLabel)
         
         view.addSubview(sheetView)
@@ -169,51 +194,51 @@ final class HomeScreenView: UIViewController {
     private func setupConstraints() {
         homeLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            view.leadingAnchor.constraint(equalTo: homeLabel.leadingAnchor, constant: -25),
-            view.layoutMarginsGuide.topAnchor.constraint(equalTo: homeLabel.topAnchor, constant: 0)
+            view.leadingAnchor.constraint(equalTo: homeLabel.leadingAnchor, constant: -UIGlobalConstants.horizontalInset),
+            view.layoutMarginsGuide.topAnchor.constraint(equalTo: homeLabel.topAnchor)
         ])
         
         menuIcon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             menuIcon.centerYAnchor.constraint(equalTo: homeLabel.centerYAnchor),
-            menuIcon.heightAnchor.constraint(equalToConstant: 48),
-            menuIcon.widthAnchor.constraint(equalToConstant: 48),
-            menuIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25)
+            menuIcon.heightAnchor.constraint(equalToConstant: UILocalConstants.menuIconSize),
+            menuIcon.widthAnchor.constraint(equalToConstant: UILocalConstants.menuIconSize),
+            menuIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -UIGlobalConstants.horizontalInset)
         ])
         
         menu.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            menu.topAnchor.constraint(equalTo: menuIcon.bottomAnchor, constant: 8),
-            menu.trailingAnchor.constraint(equalTo: menuIcon.trailingAnchor, constant: -8),
-            menu.heightAnchor.constraint(equalToConstant: 102),
-            menu.widthAnchor.constraint(equalToConstant: 157)
+            menu.topAnchor.constraint(equalTo: menuIcon.bottomAnchor, constant: UILocalConstants.menuDiagonalOffset),
+            menu.trailingAnchor.constraint(equalTo: menuIcon.trailingAnchor, constant: -UILocalConstants.menuDiagonalOffset),
+            menu.heightAnchor.constraint(equalToConstant: UILocalConstants.menuHeight),
+            menu.widthAnchor.constraint(equalToConstant: UILocalConstants.menuWidth)
             
         ])
         
         affilateLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            view.leadingAnchor.constraint(equalTo: affilateLabel.leadingAnchor, constant: -25),
-            affilateLabel.topAnchor.constraint(equalTo: homeLabel.bottomAnchor, constant: 45)
+            affilateLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIGlobalConstants.horizontalInset),
+            affilateLabel.topAnchor.constraint(equalTo: homeLabel.bottomAnchor, constant: UILocalConstants.affilateLabelTopOffset)
         ])
         
-        infoView.translatesAutoresizingMaskIntoConstraints = false
+        learnButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            infoView.heightAnchor.constraint(equalToConstant: 35),
-            infoView.widthAnchor.constraint(equalToConstant: 127),
-            infoView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            infoView.topAnchor.constraint(equalTo: affilateLabel.bottomAnchor, constant: 12)
+            learnButton.heightAnchor.constraint(equalToConstant: UILocalConstants.learnButtonHeight),
+            learnButton.widthAnchor.constraint(equalToConstant: UILocalConstants.learnButtonWidth),
+            learnButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIGlobalConstants.horizontalInset),
+            learnButton.topAnchor.constraint(equalTo: affilateLabel.bottomAnchor, constant: UILocalConstants.learnButtonTopOffset)
         ])
         
         infoLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            infoLabel.centerXAnchor.constraint(equalTo: infoView.centerXAnchor),
-            infoLabel.centerYAnchor.constraint(equalTo: infoView.centerYAnchor)
+            infoLabel.centerXAnchor.constraint(equalTo: learnButton.centerXAnchor),
+            infoLabel.centerYAnchor.constraint(equalTo: learnButton.centerYAnchor)
         ])
         
         towerImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             towerImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            towerImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 101)
+            towerImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: UILocalConstants.towerImageTopOffset)
             
         ])
         
@@ -221,36 +246,36 @@ final class HomeScreenView: UIViewController {
         NSLayoutConstraint.activate([
             sheetView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             sheetView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            sheetView.topAnchor.constraint(equalTo: view.topAnchor, constant: 258),
-            sheetView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 40)
+            sheetView.topAnchor.constraint(equalTo: view.topAnchor, constant: UILocalConstants.sheetTopOffset),
+            sheetView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: UIGlobalConstants.sheetCornerRadius)
         ])
         
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            headerLabel.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor, constant: 25),
-            headerLabel.topAnchor.constraint(equalTo: sheetView.topAnchor, constant: 25)
+            headerLabel.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor, constant: UIGlobalConstants.horizontalInset),
+            headerLabel.topAnchor.constraint(equalTo: sheetView.topAnchor, constant: UILocalConstants.horizontalInset)
         ])
         
         
         filterIcon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             filterIcon.centerYAnchor.constraint(equalTo: headerLabel.centerYAnchor),
-            filterIcon.trailingAnchor.constraint(equalTo: sheetView.trailingAnchor, constant: -25)
+            filterIcon.trailingAnchor.constraint(equalTo: sheetView.trailingAnchor, constant: -UIGlobalConstants.horizontalInset)
             
         ])
         
         tokenTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tokenTableView.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor, constant: 25),
-            tokenTableView.trailingAnchor.constraint(equalTo: sheetView.trailingAnchor, constant: -25),
-            tokenTableView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 25),
-            tokenTableView.bottomAnchor.constraint(equalTo: sheetView.bottomAnchor, constant: -40)
+            tokenTableView.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor, constant: UIGlobalConstants.horizontalInset),
+            tokenTableView.trailingAnchor.constraint(equalTo: sheetView.trailingAnchor, constant: -UIGlobalConstants.horizontalInset),
+            tokenTableView.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: UILocalConstants.horizontalInset),
+            tokenTableView.bottomAnchor.constraint(equalTo: sheetView.bottomAnchor, constant: -UIGlobalConstants.sheetCornerRadius)
         ])
         
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: 25),
+            activityIndicator.topAnchor.constraint(equalTo: headerLabel.bottomAnchor, constant: UILocalConstants.verticalInset),
         ])
     }
     
@@ -260,7 +285,7 @@ final class HomeScreenView: UIViewController {
     }
     
     @objc private func didTapMenuButton() {
-        UIView.transition(with: menu, duration: 0.3, options: .transitionCrossDissolve) { [weak self] in
+        UIView.transition(with: menu, duration: UIGlobalConstants.animationDuration, options: .transitionCrossDissolve) { [weak self] in
             self?.menu.isHidden.toggle()
         }
     }
@@ -269,13 +294,13 @@ final class HomeScreenView: UIViewController {
 // MARK: - HomeScreenViewModelDelegate
 extension HomeScreenView: HomeScreenViewModelDelegate {
     func didUpdateSortOrder(_ order: SortingOrder) {
-        UIView.transition(with: filterIcon, duration: 0.3, options: .transitionFlipFromTop) { [weak self] in
+        UIView.transition(with: filterIcon, duration: UIGlobalConstants.animationDuration, options: .transitionFlipFromTop) { [weak self] in
             self?.filterIcon.image = order == .ascending ? .increasingIcon : .decreasingIcon
         }
     }
     
     func didUpdateTokens() {
-        UIView.transition(with: tokenTableView, duration: 0.3, options: .transitionCrossDissolve) { [weak self] in
+        UIView.transition(with: tokenTableView, duration: UIGlobalConstants.animationDuration, options: .transitionCrossDissolve) { [weak self] in
             self?.tokenTableView.reloadData()
         }
     }

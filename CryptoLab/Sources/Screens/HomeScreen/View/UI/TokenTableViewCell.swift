@@ -2,7 +2,17 @@ import UIKit
 
 // MARK: - TokenTableViewCell
 final class TokenTableViewCell: UITableViewCell {
+    // MARK: - UILocalConstants
+    private enum UILocalConstants {
+        static let tokenImageSize: CGFloat = 50
+        static let priceIconSize: CGFloat = 12
+        static let verticalInset: CGFloat = 15
+        static let horizontalInset: CGFloat = 19
+        static let priceIconInset: CGFloat = 5
+        static let tickerLabelTopInset: CGFloat = 3
+    }
     
+    // MARK: - UI Elements
     lazy private var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .placeholderTokenIcon
@@ -12,7 +22,6 @@ final class TokenTableViewCell: UITableViewCell {
     lazy private var tokenLabel: UILabel = {
         let label = UILabel()
         label.font = .poppinsMedium(size: 18)
-        label.text = "Bitcoin"
         label.textColor = .customDarkText
         return label
     }()
@@ -20,7 +29,6 @@ final class TokenTableViewCell: UITableViewCell {
     lazy private var tickerLabel: UILabel = {
         let label = UILabel()
         label.font = .poppinsMedium(size: 14)
-        label.text = "BTC"
         label.textColor = .customGrayText
         return label
     }()
@@ -29,7 +37,6 @@ final class TokenTableViewCell: UITableViewCell {
         let label = UILabel()
         label.font = .poppinsMedium(size: 18)
         label.textColor = .customDarkText
-        label.text = "$32,128.80"
         return label
     }()
     
@@ -42,7 +49,6 @@ final class TokenTableViewCell: UITableViewCell {
     lazy private var priceChangePercentLabel: UILabel = {
         let label = UILabel()
         label.font = .poppinsMedium(size: 14)
-        label.text = "2.5%"
         label.textColor = .customGrayText
         return label
     }()
@@ -85,23 +91,23 @@ final class TokenTableViewCell: UITableViewCell {
     private func setupConstraints() {
         iconImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            iconImageView.heightAnchor.constraint(equalToConstant: 50),
-            iconImageView.widthAnchor.constraint(equalToConstant: 50),
-            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
-            iconImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
+            iconImageView.heightAnchor.constraint(equalToConstant: UILocalConstants.tokenImageSize),
+            iconImageView.widthAnchor.constraint(equalToConstant: UILocalConstants.tokenImageSize),
+            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: UILocalConstants.verticalInset),
+            iconImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -UILocalConstants.verticalInset),
             iconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor)
         ])
         
         tokenLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            tokenLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
-            tokenLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 19),
+            tokenLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: UILocalConstants.verticalInset),
+            tokenLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: UILocalConstants.horizontalInset),
         ])
 
         tickerLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tickerLabel.leadingAnchor.constraint(equalTo: tokenLabel.leadingAnchor),
-            tickerLabel.topAnchor.constraint(equalTo: tokenLabel.bottomAnchor, constant: 3)
+            tickerLabel.topAnchor.constraint(equalTo: tokenLabel.bottomAnchor, constant: UILocalConstants.tickerLabelTopInset)
         ])
 
         tokenPriceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -113,13 +119,13 @@ final class TokenTableViewCell: UITableViewCell {
         priceChangeIcon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             priceChangeIcon.centerYAnchor.constraint(equalTo: tickerLabel.centerYAnchor),
-            priceChangeIcon.heightAnchor.constraint(equalToConstant: 12),
-            priceChangeIcon.widthAnchor.constraint(equalToConstant: 12),
+            priceChangeIcon.heightAnchor.constraint(equalToConstant: UILocalConstants.priceIconSize),
+            priceChangeIcon.widthAnchor.constraint(equalToConstant: UILocalConstants.priceIconSize),
         ])
         
         priceChangePercentLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            priceChangePercentLabel.leadingAnchor.constraint(equalTo: priceChangeIcon.trailingAnchor, constant: 5),
+            priceChangePercentLabel.leadingAnchor.constraint(equalTo: priceChangeIcon.trailingAnchor, constant: UILocalConstants.priceIconInset),
             priceChangePercentLabel.centerYAnchor.constraint(equalTo: priceChangeIcon.centerYAnchor),
             priceChangePercentLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])

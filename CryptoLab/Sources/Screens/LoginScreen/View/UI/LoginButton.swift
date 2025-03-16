@@ -2,6 +2,12 @@ import UIKit
 
 // MARK: - LoginButton
 final class LoginButton: UIView {
+    // MARK: - UILocalConstants
+    private enum UILocalConstants {
+        static let cornerRadius: CGFloat = 25
+        static let elementHeight: CGFloat = 55
+    }
+    
     // MARK: - UI Elements
     let label: UILabel = {
         let label = UILabel()
@@ -26,15 +32,14 @@ final class LoginButton: UIView {
     // MARK: - Private Methods
     private func setupView() {
         backgroundColor = .customBlack
-        layer.cornerRadius = 25
+        layer.cornerRadius = UILocalConstants.cornerRadius
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(label)
         
         NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            label.centerXAnchor.constraint(equalTo: centerXAnchor),
             label.centerYAnchor.constraint(equalTo: centerYAnchor),
-            label.heightAnchor.constraint(equalToConstant: 55)
+            label.heightAnchor.constraint(equalToConstant: UILocalConstants.elementHeight)
         ])
     }
     

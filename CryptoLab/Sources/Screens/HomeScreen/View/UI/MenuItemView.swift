@@ -9,6 +9,14 @@ struct MenuItemModel {
 
 // MARK: - Menu Item View
 final class MenuItemView: UIView {
+    // MARK: - UILocalConstants
+    private enum UILocalConstants {
+        static let spacing: CGFloat = 8
+        static let iconSize: CGFloat = 20
+        static let verticalInset: CGFloat = 16
+        static let horizontalInset: CGFloat = 20
+    }
+    
     // MARK: - UI Elements
     private lazy var iconImageView: UIImageView = {
        let imageView = UIImageView()
@@ -48,19 +56,19 @@ final class MenuItemView: UIView {
     private func setupUI() {
         let stackView = UIStackView(arrangedSubviews: [iconImageView, titleLabel])
         stackView.axis = .horizontal
-        stackView.spacing = 8
+        stackView.spacing = UILocalConstants.spacing
         stackView.alignment = .center
         
         addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 16),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UILocalConstants.horizontalInset),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UILocalConstants.horizontalInset),
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: UILocalConstants.verticalInset),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -UILocalConstants.verticalInset),
             
-            iconImageView.widthAnchor.constraint(equalToConstant: 20),
-            iconImageView.heightAnchor.constraint(equalToConstant: 20)
+            iconImageView.widthAnchor.constraint(equalToConstant: UILocalConstants.iconSize),
+            iconImageView.heightAnchor.constraint(equalToConstant: UILocalConstants.iconSize)
         ])
     }
     

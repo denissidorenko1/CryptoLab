@@ -2,6 +2,22 @@ import UIKit
 
 // MARK: - DetailedInfoScreenView
 final class DetailedInfoScreenView: UIViewController {
+    // MARK: - UILocalConstants
+    private enum UILocalConstants {
+        static let backIconSize: CGFloat = 48
+        static let priceChangeIconSize: CGFloat = 12
+        static let priceChangeTrailingOffset: CGFloat = 20
+        static let priceChangeIconTopOffset: CGFloat = 3
+        static let tokenPriceTopOffset: CGFloat = 20
+        static let priceChangeLabelHorizontalOffset: CGFloat = 5
+        static let sheetHeight: CGFloat = 160
+        static let timeSegmentedControlHeight: CGFloat = 56
+        static let horizontalSpacing: CGFloat = 20
+        static let marketDataVerticalOffset: CGFloat = 15
+        static let segmentedControlTopOffset: CGFloat = 20
+        static let marketStatisticsTopOffset: CGFloat = 25
+    }
+    
     // MARK: - Properties
     private let coordinator: Coordinator
     private let viewModel: DetailedInfoScreenViewModel
@@ -136,10 +152,10 @@ final class DetailedInfoScreenView: UIViewController {
         backIcon.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            backIcon.widthAnchor.constraint(equalToConstant: 48),
-            backIcon.heightAnchor.constraint(equalToConstant: 48),
-            backIcon.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            backIcon.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0)
+            backIcon.widthAnchor.constraint(equalToConstant: UILocalConstants.backIconSize),
+            backIcon.heightAnchor.constraint(equalToConstant: UILocalConstants.backIconSize),
+            backIcon.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIGlobalConstants.horizontalInset),
+            backIcon.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
         
         tokenLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -151,68 +167,68 @@ final class DetailedInfoScreenView: UIViewController {
         tokenPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             tokenPriceLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            tokenPriceLabel.topAnchor.constraint(equalTo: tokenLabel.bottomAnchor, constant: 20)
+            tokenPriceLabel.topAnchor.constraint(equalTo: tokenLabel.bottomAnchor, constant:  UILocalConstants.tokenPriceTopOffset)
         ])
         
         priceChangeIcon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            priceChangeIcon.heightAnchor.constraint(equalToConstant: 12),
-            priceChangeIcon.widthAnchor.constraint(equalToConstant: 12),
-            priceChangeIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -20),
-            priceChangeIcon.topAnchor.constraint(equalTo: tokenPriceLabel.bottomAnchor, constant: 3)
+            priceChangeIcon.heightAnchor.constraint(equalToConstant: UILocalConstants.priceChangeIconSize),
+            priceChangeIcon.widthAnchor.constraint(equalToConstant: UILocalConstants.priceChangeIconSize),
+            priceChangeIcon.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -UILocalConstants.priceChangeTrailingOffset),
+            priceChangeIcon.topAnchor.constraint(equalTo: tokenPriceLabel.bottomAnchor, constant: UILocalConstants.priceChangeIconTopOffset)
             
         ])
         
         priceChangeLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             priceChangeLabel.centerYAnchor.constraint(equalTo: priceChangeIcon.centerYAnchor),
-            priceChangeLabel.leadingAnchor.constraint(equalTo: priceChangeIcon.trailingAnchor, constant: 5)
+            priceChangeLabel.leadingAnchor.constraint(equalTo: priceChangeIcon.trailingAnchor, constant: UILocalConstants.priceChangeLabelHorizontalOffset)
         ])
         
         timespanSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            timespanSegmentedControl.topAnchor.constraint(equalTo: priceChangeLabel.bottomAnchor, constant: 20),
-            timespanSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            timespanSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
-            timespanSegmentedControl.heightAnchor.constraint(equalToConstant: 56)
+            timespanSegmentedControl.topAnchor.constraint(equalTo: priceChangeLabel.bottomAnchor, constant: UILocalConstants.segmentedControlTopOffset),
+            timespanSegmentedControl.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: UIGlobalConstants.horizontalInset),
+            timespanSegmentedControl.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -UIGlobalConstants.horizontalInset),
+            timespanSegmentedControl.heightAnchor.constraint(equalToConstant: UILocalConstants.timeSegmentedControlHeight)
         ])
         
         sheetView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             sheetView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             sheetView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            sheetView.heightAnchor.constraint(equalToConstant: 160+40),
-            sheetView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 40)
+            sheetView.heightAnchor.constraint(equalToConstant: UILocalConstants.sheetHeight+UIGlobalConstants.sheetCornerRadius),
+            sheetView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: UIGlobalConstants.sheetCornerRadius)
         ])
         
         marketStatisticLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            marketStatisticLabel.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor, constant: 25),
-            marketStatisticLabel.topAnchor.constraint(equalTo: sheetView.topAnchor, constant: 25)
+            marketStatisticLabel.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor, constant: UIGlobalConstants.horizontalInset),
+            marketStatisticLabel.topAnchor.constraint(equalTo: sheetView.topAnchor, constant: UILocalConstants.marketStatisticsTopOffset)
         ])
         
         marketCapitalizationLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            marketCapitalizationLabel.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor, constant: 25),
-            marketCapitalizationLabel.topAnchor.constraint(equalTo: marketStatisticLabel.bottomAnchor, constant: 15)
+            marketCapitalizationLabel.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor, constant: UIGlobalConstants.horizontalInset),
+            marketCapitalizationLabel.topAnchor.constraint(equalTo: marketStatisticLabel.bottomAnchor, constant: UILocalConstants.marketDataVerticalOffset)
         ])
         
         marketCapitalizationValueLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             marketCapitalizationValueLabel.centerYAnchor.constraint(equalTo: marketCapitalizationLabel.centerYAnchor),
-            marketCapitalizationValueLabel.trailingAnchor.constraint(equalTo: sheetView.trailingAnchor, constant: -25)
+            marketCapitalizationValueLabel.trailingAnchor.constraint(equalTo: sheetView.trailingAnchor, constant: -UIGlobalConstants.horizontalInset)
         ])
         
         circulatingSupplyLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            circulatingSupplyLabel.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor, constant: 25),
-            circulatingSupplyLabel.topAnchor.constraint(equalTo: marketCapitalizationLabel.bottomAnchor, constant: 15)
+            circulatingSupplyLabel.leadingAnchor.constraint(equalTo: sheetView.leadingAnchor, constant: UIGlobalConstants.horizontalInset),
+            circulatingSupplyLabel.topAnchor.constraint(equalTo: marketCapitalizationLabel.bottomAnchor, constant: UILocalConstants.marketDataVerticalOffset)
         ])
         
         circulatingSupplyValueLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             circulatingSupplyValueLabel.centerYAnchor.constraint(equalTo: circulatingSupplyLabel.centerYAnchor),
-            circulatingSupplyValueLabel.trailingAnchor.constraint(equalTo: sheetView.trailingAnchor, constant: -25)
+            circulatingSupplyValueLabel.trailingAnchor.constraint(equalTo: sheetView.trailingAnchor, constant: -UIGlobalConstants.horizontalInset)
         ])
     }
     

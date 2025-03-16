@@ -2,6 +2,11 @@ import UIKit
 
 // MARK: - Custom Menu View
 final class CustomMenuView: UIView {
+    // MARK: - UILocalConstants
+    private enum UILocalConstants {
+        static let cornerRadius: CGFloat = 16
+    }
+    
     // MARK: - UI Elements
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -42,7 +47,7 @@ final class CustomMenuView: UIView {
     
     private func setupUI() {
         backgroundColor = .white
-        layer.cornerRadius = 16
+        layer.cornerRadius = UILocalConstants.cornerRadius
     }
     
     private func configureMenu(items: [MenuItemModel]) {
