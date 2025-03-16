@@ -64,11 +64,10 @@ final class MenuItemView: UIView {
         NSLayoutConstraint.activate([
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: UILocalConstants.horizontalInset),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -UILocalConstants.horizontalInset),
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: UILocalConstants.verticalInset),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -UILocalConstants.verticalInset),
+            stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             iconImageView.widthAnchor.constraint(equalToConstant: UILocalConstants.iconSize),
-            iconImageView.heightAnchor.constraint(equalToConstant: UILocalConstants.iconSize)
+            iconImageView.heightAnchor.constraint(equalToConstant: UILocalConstants.iconSize),
         ])
     }
     
@@ -77,10 +76,8 @@ final class MenuItemView: UIView {
         addGestureRecognizer(tapGesture)
     }
     
-    // MARK: - Handlers
+    // MARK: - Actions
     @objc private func didTap() {
         action?()
     }
-    
-
 }
