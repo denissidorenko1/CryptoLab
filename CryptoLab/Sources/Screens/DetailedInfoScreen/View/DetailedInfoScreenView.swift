@@ -242,7 +242,7 @@ final class DetailedInfoScreenView: UIViewController {
     
     private func setMarketStatistics(capitalization: Double?, supply: Double?) {
         marketCapitalizationValueLabel.text = "\(capitalization?.asUSDCurrencyString() ?? "N/A")"
-        circulatingSupplyValueLabel.text = "\(supply ?? 0) \(viewModel.model.symbol)"
+        circulatingSupplyValueLabel.text = supply == nil ? "N/A" : "\(supply ?? 0) \(viewModel.model.symbol)"
     }
     
     private func toggleMarketStatistics(with index: Int) {
